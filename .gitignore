@@ -1,7 +1,5 @@
 # folder ignore
 */.idea/
-
-homework1
 homework10/
 homework11/
 homework12/
@@ -26,7 +24,7 @@ homework6/
 homework7/
 homework8/
 homework9
-# files ignore
+#files ignore
 *.iml
 *.xml
 *.md
