@@ -1,6 +1,6 @@
 function check_enter_name(name = "Name") {
     name = prompt("Enter your name",name);
-    if (!name){
+    if (!name || !/{0-9}/.test(name)){
         name = check_enter_name(name);
     }
     return name;
