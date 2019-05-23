@@ -8,10 +8,13 @@ function enterNumber(number = "Number") {
 }
 
 
-//не самый удачный алгоритм требует большой мощности, если ввести число больше 45 приходится ждать минут 5
-function fibonacciNumber(n) {
-    if(n<2) return n;
-    return fibonacciNumber(n-1)+fibonacciNumber(n-2)
+function fibonacciNumber(n,F1 =1, F2=1) {
+    for (let i = 3; i <= n; i++) {
+        let F3 = F1 + F2;
+        F1 = F2;
+        F2 = F3;
+    }
+    return F2;
 }
 
-alert(fibonacciNumber(enterNumber('fibonacci')));
+alert(fibonacciNumber(enterNumber('fibonacci'),1,1));
