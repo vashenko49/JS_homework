@@ -8,13 +8,16 @@ function enterNumber(number = "Number") {
 }
 
 
-function fibonacciNumber(n,F1 =1, F2=1) {
-    for (let i = 3; i <= n; i++) {
-        let F3 = F1 + F2;
-        F1 = F2;
-        F2 = F3;
+
+function fibonacciNumber(F0=1, F1=1, n){
+    if(n===1){
+        return F1;
     }
-    return F2;
+    if(n===2){
+        return F0;
+    }
+    return fibonacciNumber(F0+F1,F0,n-1);
+
 }
 
-alert(fibonacciNumber(enterNumber('fibonacci'),1,1));
+console.log(fibonacciNumber(1,1,enterNumber('enter number fibonacci')));
