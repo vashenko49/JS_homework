@@ -1,7 +1,7 @@
 function enterString(message="Enter",tempString = "Enter") {
     tempString = prompt(message,tempString);
     if(!tempString){
-        tempString = enterString(message + " again",tempString);
+        tempString = enterString(message ,tempString);
     }
     return tempString;
 }
