@@ -1,5 +1,5 @@
-function enterNumber(number = "Number") {
-    number = prompt("Enter your number multiples of five", number);
+function enterNumber(number = "Number",textForPromt="Enter") {
+    number = prompt(textForPromt, number);
     number = +number.replace(',','.');//сделал так потому что когда пользователь введет дробное число, число не проходит проверку и передается рекурсии NaN
     if (isNaN(number) || !Number.isInteger(number)){
         number = enterNumber(number);
@@ -23,8 +23,7 @@ function multiplesFive(start, finish) {
 function simpleNumber(start = 2, finish=3){
     //инкапсулировал функцию, что бы ее нетрогали из внешки
     function isPrime(temp){
-        let max=Math.floor(Math.sqrt(temp));
-        for (let i = 2; i <= max; i++) {
+        for (let i = 2; i <= Math.floor(Math.sqrt(temp)); i++) {
             if (temp%i===0) {
                 return false;
             }
@@ -35,7 +34,7 @@ function simpleNumber(start = 2, finish=3){
     let listNumber = [];
     if(start<2||finish<2 || start>=finish|| !isFinite(start) || start%1 || !isFinite(finish) || finish%1  ){
         alert('No valid');
-        simpleNumber(enterNumber('from'),enterNumber('to'));
+        simpleNumber(enterNumber('from',"Enter again"),enterNumber('to',"enter again"));
     }
     else {
         for (;start<=finish;start++){
@@ -51,6 +50,6 @@ function simpleNumber(start = 2, finish=3){
 }
 
 //кратные 5
-console.log(multiplesFive(enterNumber('from'),enterNumber('to')));
+console.log(multiplesFive(enterNumber('from','Enter from '),enterNumber('to', "Enter to")));
 //простые числа
-console.log(simpleNumber(enterNumber('from'),enterNumber('to')));
+console.log(simpleNumber(enterNumber('from',"Enter from"),enterNumber('to',"Enter to")));
