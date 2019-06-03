@@ -6,17 +6,17 @@ function enterString(message="Enter",tempString = "Enter") {
     return tempString;
 }
 
-function createUser(firstName, lastName) {
+function createUser() {
     const newUser = {};
 
     Object.defineProperties(newUser,{
        "firstName":{
-           value:firstName,
+           value:enterString('enter firstname'),
            configurable:true,
            writable:false
        },
         "lastName":{
-            value:lastName,
+            value:enterString('enter lastname'),
             configurable:true,
             writable:false
         }
@@ -29,8 +29,11 @@ function createUser(firstName, lastName) {
     newUser.setFirstName= function (temFirst){
         Object.defineProperty(newUser,"firstName",{value:temFirst});
     };
+    newUser.getLogin = function () {
+      return this.firstName[0].toLowerCase() + this.lastName.toLowerCase();
+    };
     return newUser;
 }
 
-let test = createUser(enterString('enter firstname'),enterString('enter lastname'));
+let test = createUser();
 
