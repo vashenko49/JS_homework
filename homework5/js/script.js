@@ -43,7 +43,7 @@ function createUser() {
 
     let tempDate = enterDate('Введите день рождение в формате dd.mm.yyyy').split(".");
 
-    newUser.age = new Date(tempDate[2],tempDate[1],tempDate[0]);
+    newUser.age = new Date(tempDate[2],tempDate[1]-1,tempDate[0]);
 
     newUser.getAge = function () {
         return parseInt((Math.abs(new Date().getTime() - this.age.getTime())/(1000*60*60*24*365)));
