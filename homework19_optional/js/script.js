@@ -45,26 +45,24 @@ var templateObj = {
 };
 
 function cloningObject(obj) {
-    const result = {};
-    debugger;
-    for (let key in obj){
-        if(obj[key].constructor===Object){
-            result[key] = {};
-            result[key]=cloningObject(obj[key]);
+    if(obj.constructor===Object){
+        let res ={};
+        for(let key in obj){
+            res[key] = {};
+            res[key]=cloningObject(obj[key]);
         }
-        else if(obj[key].constructor === Array){
-            result[key]=[];
-            for (let i = 0;i<obj[key].length;i++){
-                result[key][i] =cloningObject(obj[key][i]);
-            }
-        }
-        else {
-            result[key] = obj[key];
-        }
-
+        return res;
     }
-
-    return result;
+    else if(obj.constructor===Array){
+        let result = [];
+        for (let i =0;i<obj.length;i++){
+            result[i]=cloningObject(obj[i]);
+        }
+        return  result;
+    }
+    else {
+        return  obj;
+    }
 }
 
 
