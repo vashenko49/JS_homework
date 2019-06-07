@@ -72,7 +72,7 @@ function filterCollection(array, keyString,boolean, ...paths) {
     }
 
 
-    function filterObjectOrArray(obj, keyStr, pathsArray,resultFindField = true, indexDeep =-1){
+    function filterObjectOrArray(obj, keyStr, pathsArray, indexDeep =-1){
         if(obj.constructor===Object){
             let res ={};
             indexDeep++;
@@ -84,7 +84,7 @@ function filterCollection(array, keyString,boolean, ...paths) {
                     if(key.toUpperCase()===pathsArray[i][indexDeep].toString().toUpperCase()){
 
                         res[key] = {};
-                        res[key]=filterObjectOrArray(obj[key],keyStr,pathsArray,resultFindField,indexDeep);
+                        res[key]=filterObjectOrArray(obj[key],keyStr,pathsArray,indexDeep);
 
                     }
 
@@ -103,7 +103,7 @@ function filterCollection(array, keyString,boolean, ...paths) {
             debugger;
             let result = [];
             for (let i =0;i<obj.length;i++){
-                result[i]=filterObjectOrArray(obj[i],keyStr,pathsArray,resultFindField, indexDeep);
+                result[i]=filterObjectOrArray(obj[i],keyStr,pathsArray, indexDeep);
                 if(result[i]===undefined){
                     result.splice(i, 1);
                 }
