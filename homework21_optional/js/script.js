@@ -63,8 +63,16 @@ function filterCollection(array, keyString,boolean, ...paths) {
         resultFindKeyString[i]=false;
     }
 
+    function isFullArray(arraySrc){
+        let trigger = true;
+        for(let i =0;i<arraySrc.length;i++){
+            if(arraySrc[i]!==undefined){trigger=false;}
+        }
+        return trigger;
+    }
 
-    function filterObjectOrArray(obj, keyStr, pathsArray, indexDeep =-1){
+
+    function filterObjectOrArray(obj, keyStr, pathsArray,resultFindField = true, indexDeep =-1){
         if(obj.constructor===Object){
             let res ={};
             indexDeep++;
@@ -76,24 +84,36 @@ function filterCollection(array, keyString,boolean, ...paths) {
                     if(key.toUpperCase()===pathsArray[i][indexDeep].toString().toUpperCase()){
 
                         res[key] = {};
-                        res[key]=filterObjectOrArray(obj[key],keyStr,pathsArray,indexDeep);
+                        res[key]=filterObjectOrArray(obj[key],keyStr,pathsArray,resultFindField,indexDeep);
 
+                    }
+
+                    if(res[key]===undefined){
+                        delete  res[key];
                     }
 
                 }
 
             }
-            return  res;
+            if(Object.keys(res).length!==0){
+                return  res;
+            }
         }
         else if(obj.constructor===Array){
+            debugger;
             let result = [];
             for (let i =0;i<obj.length;i++){
-                result[i]=filterObjectOrArray(obj[i],keyStr,pathsArray, indexDeep);
+                result[i]=filterObjectOrArray(obj[i],keyStr,pathsArray,resultFindField, indexDeep);
+                if(result[i]===undefined){
+                    result.splice(i, 1);
+                }
             }
-            return  result;
+            if (!isFullArray(result))
+            {
+                return result;
+            }
         }
         else {
-
             for (let i =0; i<keyStr.length;i++){
                 if(obj.toUpperCase()===keyStr[i].toUpperCase()){
                     resultFindKeyString[i]=true;
@@ -127,7 +147,7 @@ function filterCollection(array, keyString,boolean, ...paths) {
 }
 
 
-//Вроде работает но не могу решить проблему с undefined
-//Но он выдает очищеный массив который мы дали
-let test = filterCollection(vehicles,'en_US test jojo Toyota',true,'name','locales.dog.description', 'description', 'contentType.name', 'locales.name', 'locales.description' );
+//Вроде работает) сказали использовать map, Filter и так далее но придумать их использование при фильтрации не смог, использовал reduce для нахождение булевского значения массива
+let test = filterCollection(vehicles,'en_US',true,'name','locales.dog.description', 'description', 'contentType.name', 'locales.name', 'locales.description' );
 console.log(test);
+
