@@ -3,21 +3,21 @@ let test1 =['hello', ['1', '2', '3', 'sea', 'user', 23], 'Kiev', ['1', '2', ['he
 
 
 function viewArray(array) {
-    
     let arrayElement = printArray(array);
     document.body.appendChild(arrayElement);
 
-
     let sec  = 10;
     let timer = document.createElement('p');
+    timer.style.fontSize = '50px';
+    timer.style.color = 'red';
     document.body.appendChild(timer);
 
     let timeOut = setInterval(function ()
     {
         if(sec<0){
-            clearInterval(timeOut);
             arrayElement.remove();
             timer.remove();
+            clearInterval(timeOut);
         }
         else {
             timer.innerHTML = sec.toString();
@@ -30,7 +30,6 @@ function viewArray(array) {
 function printArray(array) {
     let ul = document.createElement('ul');
     let liItems = array.map((item)=>{
-
         if(Array.isArray(item)){
              return printArray(item);
         }
