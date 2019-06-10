@@ -55,19 +55,16 @@ let vehicles = [
 
 
 function filterCollection(array, keyString,boolean, ...paths) {
-    keyString= keyString.split(' ');
-    paths.forEach((elem,index,array)=>{array[index]=array[index].split('.')});
 
-    let resultFindKeyString = [];
-    for (let i = 0;i<keyString.length;i++){
-        resultFindKeyString[i]=false;
-    }
+
+
+
 
     function isFullArray(arraySrc){
         let trigger = true;
-        for(let i =0;i<arraySrc.length;i++){
-            if(arraySrc[i]!==undefined){trigger=false;}
-        }
+        arraySrc.forEach(function (items) {
+            if(items!==undefined){trigger=false;}
+        });
         return trigger;
     }
 
@@ -100,7 +97,6 @@ function filterCollection(array, keyString,boolean, ...paths) {
             }
         }
         else if(obj.constructor===Array){
-            debugger;
             let result = [];
             for (let i =0;i<obj.length;i++){
                 result[i]=filterObjectOrArray(obj[i],keyStr,pathsArray, indexDeep);
@@ -124,7 +120,15 @@ function filterCollection(array, keyString,boolean, ...paths) {
         }
     }
 
+    keyString= keyString.split(' ');
+    paths.forEach((elem,index,array)=>{array[index]=array[index].split('.')});
+    let resultFindKeyString = [];
+    for (let i = 0;i<keyString.length;i++){
+        resultFindKeyString[i]=false;
+    }
+
     let filterClone = filterObjectOrArray(array,keyString,paths);
+
     let boolFind = resultFindKeyString.reduce((pre,current)=>{
         if(boolean){
             return  Boolean(pre) && Boolean(current);
