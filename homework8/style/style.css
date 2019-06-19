@@ -1,0 +1,37 @@
+html,body{
+    padding: 0;
+    margin: 0;
+}
+.pre-input{
+    margin: 0;
+    display: block;
+    padding: 15px;
+    background-color: lightcoral;
+    color: white;
+}
+.under-input{
+    display: inline-block;
+    margin: 15px;
+    border: 1px solid grey;
+    color: grey;
+    border-radius: 16px;
+    padding: 6px;
+}
+.under-input-cross{
+    margin-left: 4px;
+    border: 1px solid grey;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    display: inline-block;
+    text-align: center;
+
+}
+#inputPrice{
+
+    outline:none;
+    border: 2px solid grey;
+    padding: 1px 5px 1px 5px;
+    border-radius: 4px;
+}
