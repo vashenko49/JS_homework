@@ -1,0 +1,6 @@
+.style-input{
+    outline:none;
+    border: 2px solid grey;
+    padding: 1px 5px 1px 5px;
+    border-radius: 4px;
+}
