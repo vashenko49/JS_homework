@@ -13,9 +13,9 @@ let divWithCircle = document.createElement('div');
 let countTouch=0;
 
 function randomColor() {
-    let r = Math.floor(Math.random() * (256));
-    let g = Math.floor(Math.random() * (256));
-    let b = Math.floor(Math.random() * (256));
+    let r = Math.floor(Math.random() * (255));
+    let g = Math.floor(Math.random() * (255));
+    let b = Math.floor(Math.random() * (255));
     return `rgb(${r},${g},${b})`
 }
 
@@ -24,6 +24,7 @@ function createCircle(size) {
     for(let i =0; i<100;i++){
         let circle = document.createElement('div');
         circle.style.cssText=`display: inline-block; border: 6px solid ${randomColor()}; height: ${size}px; width: ${size}px; border-radius: 50%;`;
+        circle.dataset.circle = 'circle';
         divWithCircle.append(circle);
     }
 }
@@ -47,6 +48,11 @@ function secondTouch(){
     }
 }
 
+function removeAllCircle(){
+    for(let i =0; i<divWithCircle.childElementCount;){
+        divWithCircle.children[i].remove();
+    }
+}
 buttonPaintCircle.onclick =function () {
     if(countTouch===0){
         firstTouch();
@@ -56,17 +62,17 @@ buttonPaintCircle.onclick =function () {
     }
     else {
         divWithCircle.remove();
-        for(let i =0; i<divWithCircle.childElementCount;){
-            divWithCircle.children[i].remove();
-        }
+        removeAllCircle();
         countTouch=0;
     }
 
 };
+
 divWithCircle.onclick = function (event) {
   let target = event.target;
-  target.style.display= 'none';
-
+  if(target.dataset.circle === 'circle') {
+      target.remove();
+  }
 };
 
 

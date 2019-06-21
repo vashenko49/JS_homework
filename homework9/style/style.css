@@ -4,7 +4,7 @@ ul {
 }
 
 .centered-content {
-    height: 50vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
