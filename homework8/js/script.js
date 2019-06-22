@@ -1,69 +1,74 @@
 function enterNumber(number) {
     number = number.replace(',','.');
     if(isNaN(number) ||!number){
-        return;
+        return false;
     }
     return +number;
 }
 let inputPrice = document.getElementById('inputPrice');
 
-inputPrice.onfocus =function () {
+function createElement(tagName, className, innerHTML=''){
+    let newElement = document.createElement(tagName);
+    newElement.classList.add(className);
+    newElement.innerHTML = innerHTML;
+    return newElement;
+}
+
+function putNodeInNode(parentNode,childNode){
+    parentNode.append(childNode);
+}
+//создание span с текстом и кнопка X
+let spanElement = createElement('span','under-input','Current price: $');
+let spanPrice = createElement('span', 'under-input-price');
+let spanCross = createElement('span','under-input-cross','&times');
+//создание Please enter correct price. span
+let enterCorrect = createElement('span', 'correct-text','Please enter correct price.');
+
+
+inputPrice.addEventListener('focus', function () {
     this.value = '';
     this.style.borderColor = 'green';
     this.style.boxShadow = '0px 0px 8px 0px rgba(0,255,0,1)';
-};
-//создание span с текстом и кнопка X
-let spanElement = document.createElement('span');
-spanElement.classList.add('under-input');
-let spanPrice = document.createElement('span');
-spanPrice.classList.add('under-input-price');
-let spanCross = document.createElement('span');
-spanCross.classList.add('under-input-cross');
-spanCross.innerHTML = '&times';
+});
+inputPrice.addEventListener('blur',function () {
+    this.style.boxShadow = '';
 
-//создание Please enter correct price. span
-let enterCorrect = document.createElement('span');
-enterCorrect.innerHTML = 'Please enter correct price.';
-enterCorrect.classList.add('correct-text');
-inputPrice.onblur = function () {
-    if(spanCross){
+    if(spanElement){
         spanElement.remove();
     }
     if(enterCorrect){
         enterCorrect.remove();
     }
-    this.style.boxShadow = '';
 
-    let enterPrice = enterNumber(inputPrice.value);
+    let enterPrice = enterNumber(this.value);
+
     if(!enterPrice || enterPrice<=0 ){
-        debugger;
         this.style.borderColor='red';
-        inputPrice.parentNode.append(enterCorrect);
+        putNodeInNode(this.parentNode,enterCorrect);
     }
     else {
         this.style.borderColor = '';
-        spanElement.innerHTML = `Current price: $`;
         spanPrice.innerHTML = enterPrice;
-        spanElement.append(spanPrice);
-        spanElement.append(spanCross);
-        document.body.insertBefore(spanElement,inputPrice.parentNode);
+        putNodeInNode(spanElement,spanPrice);
+        putNodeInNode(spanElement,spanCross);
+        document.body.insertBefore(spanElement,this.parentNode);
     }
-};
+});
 
-spanCross.onmouseover = function () {
+spanCross.addEventListener('mouseover',function () {
     this.style.borderColor = 'red';
     this.style.color = 'red';
     inputPrice.style.color = 'green';
-};
-spanCross.onmouseout = function () {
+});
+spanCross.addEventListener('mouseout',function () {
     this.style.borderColor = '';
     this.style.color = '';
     inputPrice.style.color = '';
-};
-spanCross.onclick = function () {
+});
+spanCross.addEventListener('click',function () {
     if(spanElement){
         spanElement.remove();
         inputPrice.value = "";
         inputPrice.style.color = 'green';
     }
-};
+});

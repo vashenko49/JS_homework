@@ -18,17 +18,15 @@ function lookElement(attribute) {
     }
 }
 
-    hiddenElements(titleListInformation);
+hiddenElements(titleListInformation);
 
 titleList.onclick = function (event) {
     let target = event.target;
     let children = titleList.children;
     for(let i =0;i<children.length;i++){
-        children[i].classList.forEach((elem)=>{
-            if(elem==='active'){
-                children[i].classList.remove('active');
-            }
-        })
+        if(children[i].classList.contains('active')){
+            children[i].classList.remove('active');
+        }
     }
     target.classList.add("active");
     lookElement(target.dataset.item);
