@@ -1,0 +1,54 @@
+.password-form {
+    display: flex;
+    flex-direction: column;
+}
+.input-wrapper {
+    position: relative;
+    width: intrinsic;
+    width: -moz-max-content;
+    width: -webkit-max-content;
+}
+
+.input-wrapper input {
+    min-width: 120px;
+    padding: 10px;
+    margin-bottom: 24px;
+}
+
+.input-wrapper i {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    color: grey;
+}
+
+.btn{
+    width: 150px;
+}
+
+.fas {
+    cursor: pointer;
+}
+.bg-modal-window{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 5;
+}
+.modal-window{
+    border: 5px solid green;
+    background-color: #f1ad1d;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+
+}
