@@ -15,6 +15,22 @@ function endGame(text){
     response.append(message);
     return response;
 }
+let rangeCustom = {
+    widthCustom: document.getElementById('range-width-ran'),
+    heightCustom: document.getElementById('range-height-ran'),
+    amountMine: document.getElementById('range-height-ran')
+};
+let buttonOnPage;
+let btnStartGame;
+
+function startWorkRange() {
+    for(let key in rangeCustom){
+        rangeCustom[key].addEventListener('input',function () {
+            rangeCustom[key].nextElementSibling.innerHTML = rangeCustom[key].value;
+        });
+    }
+}
+
 let gameModes = {
     junior:{
         width: 9,
@@ -33,6 +49,77 @@ let gameModes = {
     }
 
 };
+
+function resetColorElement() {
+    buttonOnPage.forEach((element)=>{
+        if(element.getAttribute('style')){
+            element.removeAttribute('style');
+        }
+    })
+}
+
+
+
+function setInformation(){
+    let selectMode;
+    buttonOnPage.forEach((element)=>{
+        if(element.getAttribute('style')){
+            selectMode = element;
+        }
+    });
+    if(selectMode){
+        if(selectMode.dataset.status ==='custom'){
+            return{
+                width: +rangeCustom.widthCustom.value,
+                height: +rangeCustom.heightCustom.value,
+                mine: +rangeCustom.amountMine.value
+            }
+        }else {
+            for (let key in gameModes) {
+                if (selectMode.dataset.status === key) {
+                    return gameModes[key];
+                }
+            }
+        }
+    }
+    else {
+        return false;
+    }
+}
+
+
+
+
+function startWorkButton() {
+    buttonOnPage = document.querySelectorAll('.button-on-page');
+    buttonOnPage.forEach((element)=>{
+        element.addEventListener('click',function (event) {
+            resetColorElement();
+            this.style.backgroundColor = 'red';
+        })
+
+    });
+    btnStartGame = document.getElementById('btn-start-game');
+    btnStartGame.addEventListener('click',function () {
+        let selectGameModeUser = setInformation();
+        if(selectGameModeUser){
+            document.querySelector('.flagToMine').innerHTML = ` 0 / ${selectGameModeUser.mine}`;
+            document.getElementById('form').style.display = 'none';
+            page.init(selectGameModeUser.width,selectGameModeUser.height,selectGameModeUser.mine);
+        }
+        else {
+            resultGame = endGame("select game mode");
+            document.body.appendChild(resultGame);
+        }
+    })
+}
+
+window.onload = function(){
+    startWorkButton();
+    startWorkRange();
+};
+
+/*LOGIC GAME*/
 function Point(){
     this.isMine = false;
     this.mineAround =0;
@@ -75,9 +162,9 @@ let game = {
         let count = 0;
         for(let i = xStart; i<=xEnd;i++ ){
             for(let j = yStart;j<=yEnd;j++){
-               if(this.field[i][j].isMine && !(x===i && y===j )){
+                if(this.field[i][j].isMine && !(x===i && y===j )){
                     count++;
-               }
+                }
             }
         }
         this.field[x][y].mineAround = count;
@@ -99,7 +186,7 @@ let game = {
         this.countFlag=0;
         this.fieldField();
         this.startMineCounter();
-  }
+    }
 };
 
 let page = {
@@ -194,116 +281,25 @@ let page = {
                 return;
             }
 
+
+            if (game.field[x][y].isFlag) {
+                game.countFlag--;
+                game.field[x][y].isFlag = false;
                 e.target.classList.toggle('lock');
-                if (game.field[x][y].isFlag) {
-                    game.countFlag--;
-                } else {
-                    if(game.countFlag<game.mineCount) {
-                        game.field[x][y].isFlag = true;
-                        game.countFlag++;
-                    }
-                    else {
-                        return;
-                    }
+            } else {
+                if(game.countFlag<game.mineCount) {
+                    game.field[x][y].isFlag = true;
+                    game.countFlag++;
+                    e.target.classList.toggle('lock');
                 }
-                this.flagToMine.innerHTML = `${game.countFlag} / ${game.mineCount}`;
-                e.preventDefault();
+                else {
+                    return;
+                }
+            }
+            this.flagToMine.innerHTML = `${game.countFlag} / ${game.mineCount}`;
+            e.preventDefault();
 
 
         }
     }
 };
-
-
-let buttonOnPage;
-let rangeMine;
-let rangeHeight;
-let rangeWidth;
-let meanButton;
-let form;
-window.onload = function () {
-    rangeMine = document.getElementById('range-amount-mine-ran');
-    rangeHeight = document.getElementById('range-height-ran');
-    rangeWidth = document.getElementById('range-width-ran');
-    buttonOnPage = document.querySelectorAll('.button-on-page');
-    meanButton = document.getElementById('btn-start-game');
-    form = document.getElementById('form');
-    startWorkInput(rangeMine);
-    startWorkInput(rangeWidth);
-    startWorkInput(rangeHeight);
-    meanButton.addEventListener('click',function () {
-        let en = setInformation();
-        if(en){
-            form.style.display = 'none';
-            page.init(en.width,en.height,en.mine);
-        }
-        else {
-            resultGame = endGame('SELECT GAME MODE');
-            document.body.appendChild(resultGame);
-        }
-    })
-};
-
-/*выбор левел*/
-document.addEventListener('click', function(event){
-    let target = event.target;
-    if(target.classList.contains('button-on-page')){
-        setColorElement(target);
-    }
-});
-
-function resetColorElement() {
-    buttonOnPage.forEach((element)=>{
-        if(element.getAttribute('style')){
-            element.removeAttribute('style');
-        }
-    })
-}
-function setColorElement(elementSetColor){
-    if(elementSetColor) {
-        resetColorElement();
-        elementSetColor.style.backgroundColor = 'red';
-    }
-}
-/**/
-
-
-
-function startWorkInput(rangeMine) {
-    rangeMine.addEventListener('input',function () {
-        this.nextElementSibling.innerHTML = this.value;
-    });
-}
-
-
-function setInformation(){
-    debugger;
-    let enterLevel;
-    buttonOnPage.forEach((elem)=>{
-        if(elem.getAttribute('style')){
-            enterLevel = elem;
-        }
-    });
-    if(enterLevel) {
-        if (enterLevel.dataset.status === 'custom') {
-            debugger;
-            return {
-                width: +rangeWidth.value,
-                height: +rangeHeight.value,
-                mine: +rangeMine.value,
-            }
-        } else {
-            for (let key in gameModes) {
-                if (enterLevel.dataset.status === key) {
-                    return gameModes[key];
-                }
-            }
-        }
-    }
-    else {
-        return false;
-    }
-}
-
-
-
