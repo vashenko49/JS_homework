@@ -3,61 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Homework 23 opt</title>
-    <script src="js/script.js"></script>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div id="form">
-    <h1 class="title">Добро пожаловать в игру Сапёр, выберете режим игры</h1>
-    <div class="select-stock">
-        <div data-status="junior" class="junior-item button-on-page">
-            <h2 class="description-item">Новичoк</h2>
-            <span class="pre-description-item">Сетка 9x9 - Мины: 10</span>
+    <div id="form">
+        <h1 class="title">Добро пожаловать в игру Сапёр, выберете режим игры</h1>
+        <div class="select-stock">
+            <div data-status="junior" class="junior-item button-on-page">
+                <h2 class="description-item">Новичoк</h2>
+                <span class="pre-description-item">Сетка 9x9 - Мины: 10</span>
+            </div>
+            <div data-status="middle" class="middle-item button-on-page">
+                <h2 class="description-item">Любитель</h2>
+                <span class="pre-description-item">Сетка 16x16 - Мины:40</span>
+            </div>
+            <div data-status="senior" class="senior-item button-on-page">
+                <h2 class="description-item">Профессионал</h2>
+                <span class="pre-description-item">Сетка 30x16 - Мины:99</span>
+            </div>
         </div>
-        <div data-status="middle" class="middle-item button-on-page">
-            <h2 class="description-item">Любитель</h2>
-            <span class="pre-description-item">Сетка 16x16 - Мины:40</span>
+        <div class="select-custom">
+            <div data-status="custom" class="custom-item button-on-page">
+                <h2 class="description-item">Своя игра</h2>
+            </div>
+            <div class="range-width">
+                <div class="description-tool">
+                    <p class="description-tool-name">Ширина</p>
+                    <p class="description-tool-property">[9-200]</p>
+                </div>
+                <input type="range" min="9" max="200" value="9" class="slider" id="range-width-ran">
+                <span id="range-width-information">9</span>
+            </div>
+            <div class="range-height">
+                <div class="description-tool">
+                    <p class="description-tool-name">Высота</p>
+                    <p class="description-tool-property">[9-100]</p>
+                </div>
+                <input type="range" min="9" max="100" value="9" class="slider" id="range-height-ran">
+                <span id="range-height-information">9</span>
+            </div>
+            <div class="range-amount-mine">
+                <div class="description-tool">
+                    <p class="description-tool-name">Мины</p>
+                    <p class="description-tool-property">[9-150]</p>
+                </div>
+                <input type="range" min="9" max="150" value="9" class="slider" id="range-amount-mine-ran">
+                <span id="range-amount-mine-information">9</span>
+            </div>
         </div>
-        <div data-status="senior" class="senior-item button-on-page">
-            <h2 class="description-item">Профессионал</h2>
-            <span class="pre-description-item">Сетка 30x16 - Мины:99</span>
+        <div id="btn-start-game">
+            <h2 class="description-item">Начать игру</h2>
         </div>
     </div>
-    <div class="select-custom">
-        <div data-status="custom" class="custom-item button-on-page">
-            <h2 class="description-item">Своя игра</h2>
-        </div>
-        <div class="range-width">
-            <div class="description-tool">
-                <p class="description-tool-name">Ширина</p>
-                <p class="description-tool-property">[9-200]</p>
-            </div>
-            <input type="range" min="9" max="200" value="9" class="slider" id="range-width-ran">
-            <span id="range-width-information">9</span>
-        </div>
-        <div class="range-height">
-            <div class="description-tool">
-                <p class="description-tool-name">Высота</p>
-                <p class="description-tool-property">[9-100]</p>
-            </div>
-            <input type="range" min="9" max="100" value="9" class="slider" id="range-height-ran">
-            <span id="range-height-information">9</span>
-        </div>
-        <div class="range-amount-mine">
-            <div class="description-tool">
-                <p class="description-tool-name">Мины</p>
-                <p class="description-tool-property">[9-150]</p>
-            </div>
-            <input type="range" min="9" max="150" value="9" class="slider" id="range-amount-mine-ran">
-            <span id="range-amount-mine-information">9</span>
-        </div>
-    </div>
-    <div id="btn-start-game">
-        <h2 class="description-item">Начать игру</h2>
-    </div>
-</div>
-<p class="flagToMine"></p>
-<div class="field"></div>
+    <p class="flagToMine"></p>
+    <div class="field"></div>
+    <script src="js/script.js"></script>
 </body>
 </html>
