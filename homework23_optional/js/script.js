@@ -18,13 +18,12 @@ function endGame(text){
 let rangeCustom = {
     widthCustom: document.getElementById('range-width-ran'),
     heightCustom: document.getElementById('range-height-ran'),
-    amountMine: document.getElementById('range-height-ran')
+    amountMine: document.getElementById('range-amount-mine-ran')
 };
 let buttonOnPage;
 let btnStartGame;
 
 function startWorkRange() {
-    debugger;
     for(let key in rangeCustom){
         rangeCustom[key].addEventListener('input',function () {
             rangeCustom[key].nextElementSibling.innerHTML = rangeCustom[key].value;
