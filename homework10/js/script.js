@@ -25,8 +25,12 @@ document.addEventListener('click', function(event) {
    }
 });
 
+
+
 let inputWrapper = document.querySelectorAll('.input-wrapper');
 let form = document.getElementById('form');
+
+
 
 function inputPasswordSuccessful(){
     let response = document.createElement('div');
@@ -44,6 +48,8 @@ function inputPasswordSuccessful(){
     return response;
 
 }
+
+
 function inputPasswordFail(){
     let response = document.createElement('p');
     response.innerHTML = 'Нужно ввести одинаковые значения';
@@ -51,6 +57,9 @@ function inputPasswordFail(){
     response.style.marginTop = '0';
     return response;
 }
+
+
+
 function checkPassword(elementToCheck){
     for(let i =0;i< elementToCheck.length;i++){
         if(elementToCheck[0].firstElementChild.value!==elementToCheck[i].firstElementChild.value || !elementToCheck[i].firstElementChild.value){
@@ -59,6 +68,8 @@ function checkPassword(elementToCheck){
     }
     return true;
 }
+
+
 
 let responseToUser;
 form.addEventListener('submit',function (event) {

@@ -1,0 +1,175 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-family: inherit;
+}
+.field{
+    z-index: -2;
+}
+.field td{
+    width: 50px;
+    height: 50px;
+    background-image: url(../img/closed.png);
+    background-size: cover;
+    position: relative;
+}
+.field td.open{
+    background-image: url("../img/pressed.png");
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+
+}
+.field td.lock:after{
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image:url("../img/flag.png") ;
+    background-size: cover;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.field td.bomb-what-is-first{
+    background-image: url("../img/mine_red.png");
+}
+.field td.bomb-all{
+    background-image: url("../img/mine.png");
+}
+
+#form{
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url("../img/WOT-C_Illustration_Dark-Horse_Boilermaker_3600x2025px_NA.jpg");
+    background-size: cover;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    box-sizing: border-box;
+    padding:75px;
+    transform: translate(-50%,-50%);
+    width: 1200px;
+    height: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows:60px 1fr 60px;
+    grid-template-areas:
+        "title title"
+        "select-stock select-custom"
+        "btn-start-game btn-start-game";
+    justify-content: center;
+    z-index: 1;
+}
+.title{
+    grid-area: title;
+    text-align: center;
+    color: white;
+}
+.select-custom, .select-stock{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.select-stock{
+    grid-area: select-stock;
+
+}
+.select-custom{
+    grid-area: select-custom;
+}
+#btn-start-game{
+    grid-area: btn-start-game;
+    justify-self: center;
+    width: 300px;
+    height: 75px;
+    background-color: gold;
+}
+.range-width, .range-height,.range-amount-mine{
+    display: flex;
+    justify-content: space-between;
+}
+.junior-item, .middle-item,.senior-item,.custom-item{
+    cursor: pointer;
+    width: 300px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 6px;
+}
+.description-item{
+    color: white;
+}
+.pre-description-item{
+    color: lightgrey;
+}
+.junior-item {
+    background-color: green;
+}
+.junior-item:hover{
+    background-color: #528061;
+}
+.middle-item{
+    background-color: orange;
+}
+.middle-item:hover{
+    background-color: #ffd96e;
+}
+.senior-item{
+    background-color: darkred;
+}
+.senior-item:hover{
+    background-color: #8b5653;
+}
+.custom-item{
+    background-color: blue;
+}
+.custom-item:hover{
+    background-color: #575dff;
+}
+
+.range-width, .range-height, .range-amount-mine{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+input[type='range']{
+    width: 300px;
+}
+.description-tool{
+    color: white;
+    margin-right: 6px;
+    font-size: 26px;
+}
+#range-width-information, #range-height-information, #range-amount-mine-information{
+    margin-left: 6px;
+    font-size: 24px;
+}
+
+
+
+.bg-modal-window{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 9;
+}
+.modal-window{
+    border: 5px solid green;
+    background-color: #f1ad1d;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+
+}
