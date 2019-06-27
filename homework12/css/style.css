@@ -1,0 +1,22 @@
+.image-to-show {
+    display: none;
+    width: 400px;
+    height: 400px;
+}
+
+.images-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#block-with-button{
+    position: fixed;
+    width: 300px;
+    transform: translate(-50%,-100%);
+    background-color: red;
+    left: 50%;
+    top: 100%;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}

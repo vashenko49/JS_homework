@@ -1,3 +1,4 @@
+/*часть что отвечает за генерацию модального окна для вывода заключений игры или ошибки*/
 let resultGame;
 function endGame(text){
     let response = document.createElement('div');
@@ -15,11 +16,13 @@ function endGame(text){
     response.append(message);
     return response;
 }
+/*объект что отвечает за поиск ползунков в дом делеве*/
 let rangeCustom = {
     widthCustom: document.getElementById('range-width-ran'),
     heightCustom: document.getElementById('range-height-ran'),
     amountMine: document.getElementById('range-amount-mine-ran')
 };
+/*глобальные переменные заготовленны для работы с главной кнопной старт игры и кнопки выбора режима игры*/
 let buttonOnPage;
 let btnStartGame;
 
@@ -30,7 +33,7 @@ function startWorkRange() {
         });
     }
 }
-
+/*Объект с заготовлеными режимами игры*/
 let gameModes = {
     junior:{
         width: 9,
@@ -50,6 +53,8 @@ let gameModes = {
 
 };
 
+
+/*Функция которая отвечает за сброс цвета из кнопки выбора категории если выбрана другая*/
 function resetColorElement() {
     buttonOnPage.forEach((element)=>{
         if(element.getAttribute('style')){
@@ -59,7 +64,7 @@ function resetColorElement() {
 }
 
 
-
+/*функция которая получат информацию с меню*/
 function setInformation(){
     let selectMode;
     buttonOnPage.forEach((element)=>{
@@ -89,7 +94,10 @@ function setInformation(){
 
 
 
-
+/**Запуск работы кнопок добвление им событий по клику
+ кнопкам выбора режима игры дается функионал что только одна кнопка может быть выбрана,
+ главной кнопке старта игры дается получаение инормации с кнопок режима игры и запуск игры,
+ если пользователь не выбрал ничего вывести модальное окно с ошибкой*/
 function startWorkButton() {
     buttonOnPage = document.querySelectorAll('.button-on-page');
     buttonOnPage.forEach((element)=>{
@@ -113,20 +121,24 @@ function startWorkButton() {
         }
     })
 }
-
+/*запусе работы кнопок и ползунков*/
 window.onload = function(){
     startWorkButton();
     startWorkRange();
 };
 
+
+
 /*LOGIC GAME*/
+
+/*класс который отвечает за информаю о каждой ячейке на поле*/
 function Point(){
     this.isMine = false;
     this.mineAround =0;
     this.isOpen = false;
     this.isFlag =false;
 }
-
+/*в этом объекте производиться генерация поля та миин на нем та также подсчет мин вокруг каждой ячейке на поле*/
 let game = {
     width:10,
     height:10,
@@ -188,13 +200,16 @@ let game = {
         this.startMineCounter();
     }
 };
-
+/*обьект который отвечает за генерацию поля на странице*/
 let page = {
+    /*функиция запуска игры*/
     init:function (widthUser, heightUser,amountMineUser) {
         this.gameInterface.init(widthUser, heightUser,amountMineUser);
     },
+    /*обьект который отвечает за сам интерфейс игры*/
     gameInterface:{
         table:null,
+        /*отрисовка поля в dom дереве*/
         init:function (widthUser,heightUser,amountMineUser) {
             game.start(widthUser,heightUser,amountMineUser);
             this.div = document.querySelector('.field');
@@ -212,6 +227,7 @@ let page = {
                 }
             })
         },
+        /*заливка готовый dom елементов в само дерево*/
         drawField:function () {
             this.div.innerHTML ='';
             let table = document.createElement('table');
@@ -226,11 +242,14 @@ let page = {
             }
             this.div.appendChild(table);
         },
+        /*функция которая отвечает за открытие ячеек*/
         open:function(e){
             let x= e.target.cellIndex;
             let y = e.target.parentNode.rowIndex;
             this.recurseOpen(x,y);
         },
+        /*Функция которая открывает нулевые ячейки вокруг выбраной рекрсивно, если выбрать очень большое поле то она не справится с етой работой
+        * так же решает победил ли пользоваель или проиграл*/
         recurseOpen:function(x,y){
             let td = this.table.rows[y].children[x];
             if(game.field[x][y].isOpen){
@@ -273,6 +292,7 @@ let page = {
                 }
             }
         },
+        /*Функция которая отвечает за установку флага на ячейке и подсчета флагов на поле */
         lock:function (e) {
             this.flagToMine = document.querySelector('.flagToMine');
             let x= e.target.cellIndex;
