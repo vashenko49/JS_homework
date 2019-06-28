@@ -1,0 +1,17 @@
+.main-background-block{
+    background: url("../img/cover.jpg") no-repeat;
+    background-size: cover;
+}
+.header-logo-slogan,.header-contacts>p,.block-price,.block-details, .block-text,.footer,#changeMode{
+    color: red;
+}
+.block-info{
+    background: gold;
+}
+.block{
+    border-image: linear-gradient(to top, transparent 0%, red 100%);
+    border-image-slice: 1;
+}
+#changeMode{
+    background-color: black;
+}

@@ -1,0 +1,17 @@
+.main-background-block{
+    background: url("../img/background.png") no-repeat;
+    background-size: cover;
+}
+.header-logo-slogan,.header-contacts>p,.block-price,.block-details, .block-text,.footer,#changeMode{
+ color: white;
+}
+.block-info{
+    background: #f26522;
+}
+.block{
+    border-image: linear-gradient(to top, transparent 0%, white 100%);
+    border-image-slice: 1;
+}
+#changeMode{
+    background-color: blue;
+}
