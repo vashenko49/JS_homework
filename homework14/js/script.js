@@ -3,7 +3,8 @@ let $tabs =null,
 
 window.onload=function () {
    $tabs = $('.tabs-title');
-   $tabsInformation = $(".tabs-content>li");
+   $tabsInformation = $(".tabs-content").children();
+
    $tabs.click(function (event) {
       let $target = $(event.target);
       $('.active').removeClass('active');
