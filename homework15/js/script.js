@@ -5,7 +5,7 @@ let $dataItem,
 window.onload = function(){
     //запускаем праллакс
     $("[data-paroller-factor]").paroller();
-    //инициализация переменных превет
+    //инициализация переменных
     $dataItem = $('[data-item]');
     $dataInformation = $('[data-item-information]');
     $btnScrollToTop = $('#scrollToTop');
