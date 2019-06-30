@@ -31,9 +31,7 @@ window.onload = function(){
         slideToggle($(event.target).next());
     })
 };
-function slideToggle(elementToHide) {
-    elementToHide.toggle(1000);
-}
+function slideToggle(elementToHide) {elementToHide.toggle(1000);}
 
 
 
