@@ -5,7 +5,7 @@ let $dataItem,
 window.onload = function(){
     //запускаем праллакс
     $("[data-paroller-factor]").paroller();
-    //инициализация переменных
+    //инициализация переменных превет
     $dataItem = $('[data-item]');
     $dataInformation = $('[data-item-information]');
     $btnScrollToTop = $('#scrollToTop');
@@ -24,6 +24,7 @@ window.onload = function(){
     $btnScrollToTop.on('click',function () {
        $('html, body').animate({scrollTop: 0},1200);
     });
+    //событие что бы скрыть сексцию
     $btnHideSection.on('click',function  (event) {
         let nextNeighbourButton = $(event.target).next();
         nextNeighbourButton.css('display')==='none'?$(this).html('Hide this section'):$(this).html('Show this section');
@@ -31,7 +32,7 @@ window.onload = function(){
     })
 };
 function slideToggle(elementToHide) {
-    elementToHide.toggle(1000)
+    elementToHide.toggle(1000);
 }
 
 
