@@ -1,0 +1,25 @@
+.slider{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.for-the-move{
+    /*что бы не было видно мигания во время загрузки скрипта и его отработки*/
+    width: 5px;
+    height: 5px;
+    overflow: hidden;
+}
+.item{
+    width: 540px;
+    height: 180px;
+    box-sizing: border-box;
+    padding: 15px;
+    object-fit: cover;
+}
+.button{
+    border-radius: 50%;
+    font-size: 20px;
+    outline: 0;
+    outline-offset: 0;
+    margin: 15px;
+}

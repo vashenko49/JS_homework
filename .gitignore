@@ -1,6 +1,6 @@
 # folder ignore
 */.idea/
-homework25_optional
+
 #files ignore
 
 *.iml
